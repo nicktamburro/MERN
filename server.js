@@ -1,4 +1,6 @@
 const express = require('express');
+//importing the npm express
+
 
 const app = express();
 app.use(express.static('static'));

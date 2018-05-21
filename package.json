@@ -1,0 +1,20 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "pro mern stack exercises",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicktamburro/MERN.git"
+  },
+  "author": "nick tamburro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicktamburro/MERN/issues"
+  },
+  "homepage": "https://github.com/nicktamburro/MERN#readme"
+}

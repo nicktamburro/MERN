@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pro Mern Stack</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<!--THIS is the JSX transformer... , this isn't really how we do it!-->
+</head>
+<body>
+
+<!--this is JSx... after it compiles it looks more like:
+var component = React.createElement('h>1', null, "Hello World");-->
+
+<!--so this line uses the link to react-dom.js, it asks the ReactDOM library to render the component within the contentNode-->
+
+<div id="contents"></div>
+
+<script type="text/babel">
+
+var contentNode = document.getElementById('contents');
+
+var component = <h1 className="hi">Hello World</h1>;
+
+
+
+ReactDOM.render(component, contentNode);
+
+
+</script>
+</body>
+</html>
