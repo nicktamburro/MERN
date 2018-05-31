@@ -19,5 +19,9 @@
   "homepage": "https://github.com/nicktamburro/MERN#readme",
   "dependencies": {
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
   }
 }
