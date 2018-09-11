@@ -2,7 +2,7 @@
 
 var contentNode = document.getElementById('contents');
 
-var continents = ['Africa', 'America', 'Kree Empire', 'Savage Land', 'Wakanda', 'Shaolin'];
+var continents = ['why', 'is', 'it', 'like', 'this?'];
 var message = continents.map(function (c) {
   return 'Hello ' + c + '!';
 }).join(' ');
