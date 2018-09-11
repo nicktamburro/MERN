@@ -1,6 +1,6 @@
 const contentNode = document.getElementById('contents');
 
-const continents = ['Africa', 'America', 'Asia', 'Savage Land', 'Wakanda', 'Shaolin'];
+const continents = ['Africa', 'America', 'Kree Empire', 'Savage Land', 'Wakanda', 'Shaolin'];
 const message = continents.map(c => `Hello ${c}!`).join(' ');
 
 const component = <p>{message}</p>;
