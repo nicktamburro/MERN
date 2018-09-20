@@ -10,8 +10,77 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var contentNode = document.getElementById('contents');
 
-var IssueList = function (_React$Component) {
-	_inherits(IssueList, _React$Component);
+var IssueFilter = function (_React$Component) {
+	_inherits(IssueFilter, _React$Component);
+
+	function IssueFilter() {
+		_classCallCheck(this, IssueFilter);
+
+		return _possibleConstructorReturn(this, (IssueFilter.__proto__ || Object.getPrototypeOf(IssueFilter)).apply(this, arguments));
+	}
+
+	_createClass(IssueFilter, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				'IssueFilter will go here.'
+			);
+		}
+	}]);
+
+	return IssueFilter;
+}(React.Component);
+
+var IssueTable = function (_React$Component2) {
+	_inherits(IssueTable, _React$Component2);
+
+	function IssueTable() {
+		_classCallCheck(this, IssueTable);
+
+		return _possibleConstructorReturn(this, (IssueTable.__proto__ || Object.getPrototypeOf(IssueTable)).apply(this, arguments));
+	}
+
+	_createClass(IssueTable, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				'Issue Table goes here'
+			);
+		}
+	}]);
+
+	return IssueTable;
+}(React.Component);
+
+var IssueAdd = function (_React$Component3) {
+	_inherits(IssueAdd, _React$Component3);
+
+	function IssueAdd() {
+		_classCallCheck(this, IssueAdd);
+
+		return _possibleConstructorReturn(this, (IssueAdd.__proto__ || Object.getPrototypeOf(IssueAdd)).apply(this, arguments));
+	}
+
+	_createClass(IssueAdd, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				null,
+				'Issue Add goes here'
+			);
+		}
+	}]);
+
+	return IssueAdd;
+}(React.Component);
+
+var IssueList = function (_React$Component4) {
+	_inherits(IssueList, _React$Component4);
 
 	function IssueList() {
 		_classCallCheck(this, IssueList);
@@ -25,7 +94,16 @@ var IssueList = function (_React$Component) {
 			return React.createElement(
 				'div',
 				null,
-				'things will go here'
+				React.createElement(
+					'h1',
+					null,
+					'Issue Tracker'
+				),
+				React.createElement(IssueFilter, null),
+				React.createElement('hr', null),
+				React.createElement(IssueTable, null),
+				React.createElement('hr', null),
+				React.createElement(IssueAdd, null)
 			);
 		}
 	}]);
@@ -33,10 +111,12 @@ var IssueList = function (_React$Component) {
 	return IssueList;
 }(React.Component);
 
+//these arguments say (<what thing?>, <where do we put it?>);
+
+
+ReactDOM.render(React.createElement(IssueList, null), contentNode);
+
 /*const continents = ['Savage Land', 'Wakanda', 'Latvertia', 'Danger Room'];
 const message = continents.map(c => `Hello ${c}!`).join(" ");
 */
 //const component = <p>{message}</p>;
-
-
-ReactDOM.render(React.createElement(IssueList, null), contentNode);

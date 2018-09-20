@@ -1,5 +1,17 @@
 const contentNode = document.getElementById('contents');
 
+class IssueRow extends React.Component{
+	render(){
+		const borderedStyle = {border: "1px solid silver", padding: 4};
+		return(
+			<tr>
+				<td style={borderedStyle}>{this.props.issue_id}></td>
+				<td style={borderedStyle}>{this.propes.issue_title}</td>
+			</tr>
+		)
+	}
+}
+
 class IssueFilter extends React.Component{
 	render(){
 		return(
@@ -47,5 +59,3 @@ const message = continents.map(c => `Hello ${c}!`).join(" ");
 */
 //const component = <p>{message}</p>;
 
-//these arguments say (<what thing?>, <where do we put it?>);
-ReactDOM.render(<IssueList />, contentNode);
