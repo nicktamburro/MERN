@@ -17,6 +17,8 @@ class IssueRow extends React.Component{
 }
 
 //this was coming up as undefined because I had it above the IssueRow class!
+
+//we only do this in development mode, when properties are more likely to change
 IssueRow.propTypes = {
 	issue_id: React.PropTypes.number.isRequired,
 	issue_title: React.PropTypes.string
