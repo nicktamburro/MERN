@@ -28,6 +28,10 @@ class IssueRow extends React.Component{
 			//so the issue_id CAN'T be changed to children yet, it just showed the
 			//issue title twice, instead of id and title
 			<tr>
+			{/* TODO, we shouldn't have to paste this into
+			each <td> right??*/
+				//OH we're gonna do it in the html DONE!
+				}
 				<td>{issue.id}</td>
 				<td>{issue.status}</td>
 				<td>{issue.owner}</td>
@@ -35,6 +39,7 @@ class IssueRow extends React.Component{
 				<td>{issue.effort}</td>
 				<td>{issue.completionDate ? issue.completionDate.toDateString() : ''}</td>
 				<td>{issue.title}</td>
+		
 			</tr>
 		)
 	}
