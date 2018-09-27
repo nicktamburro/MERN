@@ -112,7 +112,8 @@ var IssueRow = function (_React$Component2) {
 
 
 IssueRow.propTypes = {
-	issue_id: React.PropTypes.number.isRequired,
+	issue_id: React.PropTypes.number,
+	//took away .number.isRequired ... was causing an error
 	issue_title: React.PropTypes.string
 };
 

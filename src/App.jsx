@@ -44,7 +44,8 @@ class IssueRow extends React.Component{
 
 //we only do this in development mode, when properties are more likely to change
 IssueRow.propTypes = {
-	issue_id: React.PropTypes.number.isRequired,
+	issue_id: React.PropTypes.number,
+	//took away .number.isRequired ... was causing an error
 	issue_title: React.PropTypes.string
 };
 
