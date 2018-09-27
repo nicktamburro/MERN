@@ -54,22 +54,49 @@ var IssueRow = function (_React$Component2) {
 		key: "render",
 		value: function render() {
 			var borderedStyle = { border: "1px solid silver", padding: 4 };
+			var issue = this.props.issue;
 			return (
-				//this IssueRow passes these things on to it's children
+				//this IssueRow passes these things on to its children
 				//the style and the props below
+				//so the issue_id CAN'T be changed to children yet, it just showed the
+				//issue title twice, instead of id and title
 				React.createElement(
 					"tr",
 					null,
 					React.createElement(
 						"td",
-						{ style: borderedStyle },
-						this.props.issue_id,
-						">"
+						null,
+						issue.id
 					),
 					React.createElement(
 						"td",
-						{ style: borderedStyle },
-						this.props.children
+						null,
+						issue.status
+					),
+					React.createElement(
+						"td",
+						null,
+						issue.owner
+					),
+					React.createElement(
+						"td",
+						null,
+						issue.created.toDateString()
+					),
+					React.createElement(
+						"td",
+						null,
+						issue.effort
+					),
+					React.createElement(
+						"td",
+						null,
+						issue.completionDate ? issue.completionDate.toDateString() : ''
+					),
+					React.createElement(
+						"td",
+						null,
+						issue.title
 					)
 				)
 			);
@@ -124,43 +151,69 @@ var IssueTable = function (_React$Component4) {
 	_createClass(IssueTable, [{
 		key: "render",
 		value: function render() {
+
+			var issueRows = this.props.issues.map(function (issue) {
+				return React.createElement(IssueRow, { key: issue.id, issue: issue });
+			});
 			//this table has it's own style,but then it also takes in
 			//IssueRow, or children of issue row, which inherit the styles and
 			//props
 			var borderedStyle = { border: "1px solid silver", padding: 6 };
-			return React.createElement(
-				"table",
-				{ style: { borderCollapse: "collapse" } },
+			return (
+				//why is there a double curly brace here?
+
+				//the FIRST brace is our "escape into Javascript"
+				//the second brace is just an object, the attribute's value
 				React.createElement(
-					"thead",
-					null,
+					"table",
+					{ style: { borderCollapse: "collapse" } },
 					React.createElement(
-						"tr",
+						"thead",
 						null,
 						React.createElement(
-							"th",
-							{ style: borderedStyle },
-							"Id"
-						),
-						React.createElement(
-							"th",
-							{ style: borderedStyle },
-							"Title"
+							"tr",
+							null,
+							React.createElement(
+								"th",
+								null,
+								"Id"
+							),
+							React.createElement(
+								"th",
+								null,
+								"Status"
+							),
+							React.createElement(
+								"th",
+								null,
+								"Ownder"
+							),
+							React.createElement(
+								"th",
+								null,
+								"Created"
+							),
+							React.createElement(
+								"th",
+								null,
+								"Efford"
+							),
+							React.createElement(
+								"th",
+								null,
+								"Completion Date"
+							),
+							React.createElement(
+								"th",
+								null,
+								"Title"
+							)
 						)
-					)
-				),
-				React.createElement(
-					"tbody",
-					null,
-					React.createElement(
-						IssueRow,
-						{ issue_id: 1 },
-						"issue_title=\"Error in console when clicking Add\""
 					),
 					React.createElement(
-						IssueRow,
-						{ issue_id: 2 },
-						"issue_title=\"Missing bottom border on panel\""
+						"tbody",
+						null,
+						issueRows
 					)
 				)
 			);
@@ -193,6 +246,16 @@ var IssueAdd = function (_React$Component5) {
 	return IssueAdd;
 }(React.Component);
 
+{/* FOR NOW: we're going to just have all our data here in an array, later we'll move
+ //it to server and then db*/}
+var issues = [{
+	id: 1, status: 'Open', owner: 'James Hetfield', created: new Date('2018-09-27'),
+	effort: 5, completionDate: undefined, title: 'Error in console when clicking Add'
+}, {
+	id: 2, status: 'Assigned', owner: 'Dave Mustaine', created: new Date('1987-03-05'),
+	effort: 14, completionDate: new Date('1988-03-05'), title: 'Missing bottom border on panel'
+}];
+
 var IssueList = function (_React$Component6) {
 	_inherits(IssueList, _React$Component6);
 
@@ -215,7 +278,7 @@ var IssueList = function (_React$Component6) {
 				),
 				React.createElement(IssueFilter, null),
 				React.createElement("hr", null),
-				React.createElement(IssueTable, null),
+				React.createElement(IssueTable, { issues: issues }),
 				React.createElement("hr", null),
 				React.createElement(IssueAdd, null)
 			);

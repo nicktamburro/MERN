@@ -21,12 +21,20 @@ class BorderWrap extends React.Component{
 class IssueRow extends React.Component{
 	render(){
 		const borderedStyle = {border: "1px solid silver", padding: 4};
+		const issue = this.props.issue;
 		return(
-			//this IssueRow passes these things on to it's children
+			//this IssueRow passes these things on to its children
 			//the style and the props below
+			//so the issue_id CAN'T be changed to children yet, it just showed the
+			//issue title twice, instead of id and title
 			<tr>
-				<td style={borderedStyle}>{this.props.issue_id}></td>
-				<td style={borderedStyle}>{this.props.children}</td>
+				<td>{issue.id}</td>
+				<td>{issue.status}</td>
+				<td>{issue.owner}</td>
+				<td>{issue.created.toDateString()}</td>
+				<td>{issue.effort}</td>
+				<td>{issue.completionDate ? issue.completionDate.toDateString() : ''}</td>
+				<td>{issue.title}</td>
 			</tr>
 		)
 	}
@@ -50,29 +58,31 @@ class IssueFilter extends React.Component{
 
 class IssueTable extends React.Component{
 	render(){
+
+		const issueRows = this.props.issues.map(issue => <IssueRow key={issue.id} issue={issue} />)
 		//this table has it's own style,but then it also takes in
 		//IssueRow, or children of issue row, which inherit the styles and
 		//props
 		const borderedStyle = {border: "1px solid silver", padding: 6};
 		return(
-			<table style={{borderCollapse: "collapse"}}>
+			//why is there a double curly brace here?
+
+			//the FIRST brace is our "escape into Javascript"
+			//the second brace is just an object, the attribute's value
+			<table  style={{borderCollapse: "collapse"}}>
 				<thead>
 					<tr>
-						<th style={borderedStyle}>Id</th>
-						<th style={borderedStyle}>Title</th>
+						<th>Id</th>
+						<th>Status</th>
+						<th>Ownder</th>
+						<th>Created</th>
+						<th>Efford</th>
+						<th>Completion Date</th>
+						<th>Title</th>
 					</tr>
 				</thead>
 				<tbody>
-					{/* we changed these below from:
-					   <IssueRow issue_id={1} issue_title="Error etc" />
-					   I don't totally know why yet, because of children
-					   but don't know the details yet
-					   but they work the same
-					 */}
-					<IssueRow issue_id={1}>
-					issue_title="Error in console when clicking Add"</IssueRow>
-					<IssueRow issue_id={2}>
-					issue_title="Missing bottom border on panel"</IssueRow>
+					{issueRows}
 				</tbody>
 			</table>
 		)
@@ -86,6 +96,19 @@ class IssueAdd extends React.Component{
 		)
 	}
 }
+{/* FOR NOW: we're going to just have all our data here in an array, later we'll move
+//it to server and then db*/}
+const issues = [
+	{
+		id: 1, status: 'Open', owner: 'James Hetfield', created: new Date('2018-09-27'),
+		effort: 5, completionDate: undefined, title: 'Error in console when clicking Add'
+	},
+	{
+		id: 2, status: 'Assigned', owner: 'Dave Mustaine', created: new Date('1987-03-05'),
+		effort: 14, completionDate: new Date('1988-03-05'), title: 'Missing bottom border on panel'
+	}
+];
+
 
 class IssueList extends React.Component{
 	render(){
@@ -94,7 +117,7 @@ class IssueList extends React.Component{
 			<h1>Issue Tracker</h1>
 			<IssueFilter/>
 			<hr/>
-			<IssueTable/>
+			<IssueTable issues={issues}/>
 			<hr/>
 			<IssueAdd />	
 			</div>
