@@ -23,19 +23,23 @@ var IssueRow = function (_React$Component) {
 		key: "render",
 		value: function render() {
 			var borderedStyle = { border: "1px solid silver", padding: 4 };
-			return React.createElement(
-				"tr",
-				null,
+			return (
+				//this IssueRow passes these things on to it's children
+				//the style and the props below
 				React.createElement(
-					"td",
-					{ style: borderedStyle },
-					this.props.issue_id,
-					">"
-				),
-				React.createElement(
-					"td",
-					{ style: borderedStyle },
-					this.props.issue_title
+					"tr",
+					null,
+					React.createElement(
+						"td",
+						{ style: borderedStyle },
+						this.props.issue_id,
+						">"
+					),
+					React.createElement(
+						"td",
+						{ style: borderedStyle },
+						this.props.issue_title
+					)
 				)
 			);
 		}
@@ -43,6 +47,11 @@ var IssueRow = function (_React$Component) {
 
 	return IssueRow;
 }(React.Component);
+
+IssueRow.propTypes = {
+	issue_id: React.PropTypes.number.isRequired,
+	issue_title: React.PropTypes.string
+};
 
 var IssueFilter = function (_React$Component2) {
 	_inherits(IssueFilter, _React$Component2);
@@ -79,6 +88,9 @@ var IssueTable = function (_React$Component3) {
 	_createClass(IssueTable, [{
 		key: "render",
 		value: function render() {
+			//this table has it's own style,but then it also takes in
+			//IssueRow, or children of issue row, which inherit the styles and
+			//props
 			var borderedStyle = { border: "1px solid silver", padding: 6 };
 			return React.createElement(
 				"table",

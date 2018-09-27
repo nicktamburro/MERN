@@ -1,5 +1,7 @@
 const contentNode = document.getElementById('contents');
 
+
+
 class IssueRow extends React.Component{
 	render(){
 		const borderedStyle = {border: "1px solid silver", padding: 4};
@@ -7,13 +9,18 @@ class IssueRow extends React.Component{
 			//this IssueRow passes these things on to it's children
 			//the style and the props below
 			<tr>
-				
 				<td style={borderedStyle}>{this.props.issue_id}></td>
 				<td style={borderedStyle}>{this.props.issue_title}</td>
 			</tr>
 		)
 	}
 }
+
+//this was coming up as undefined because I had it above the IssueRow class!
+IssueRow.propTypes = {
+	issue_id: React.PropTypes.number.isRequired,
+	issue_title: React.PropTypes.string
+};
 
 class IssueFilter extends React.Component{
 	render(){
