@@ -10,8 +10,39 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var contentNode = document.getElementById('contents');
 
-var IssueRow = function (_React$Component) {
-	_inherits(IssueRow, _React$Component);
+var BorderWrap = function (_React$Component) {
+	_inherits(BorderWrap, _React$Component);
+
+	function BorderWrap() {
+		_classCallCheck(this, BorderWrap);
+
+		return _possibleConstructorReturn(this, (BorderWrap.__proto__ || Object.getPrototypeOf(BorderWrap)).apply(this, arguments));
+	}
+
+	_createClass(BorderWrap, [{
+		key: "render",
+		value: function render() {
+			var borderedStyle = { border: "1px solid silver", padding: 6 };
+			return React.createElement(
+				"div",
+				{ style: borderedStyle },
+				this.props.children
+			);
+		}
+	}]);
+
+	return BorderWrap;
+}(React.Component);
+
+//so now, if we want to pass down this boderWrap stye, we could wrap any component
+//like this:
+//<BorderWrap>
+//  <ExampleComponent/>
+//</BorderWrap>
+//.....................THIS WORKS because of this.props.children
+
+var IssueRow = function (_React$Component2) {
+	_inherits(IssueRow, _React$Component2);
 
 	function IssueRow() {
 		_classCallCheck(this, IssueRow);
@@ -38,7 +69,7 @@ var IssueRow = function (_React$Component) {
 					React.createElement(
 						"td",
 						{ style: borderedStyle },
-						this.props.issue_title
+						this.props.children
 					)
 				)
 			);
@@ -48,13 +79,18 @@ var IssueRow = function (_React$Component) {
 	return IssueRow;
 }(React.Component);
 
+//this was coming up as undefined because I had it above the IssueRow class!
+
+//we only do this in development mode, when properties are more likely to change
+
+
 IssueRow.propTypes = {
 	issue_id: React.PropTypes.number.isRequired,
 	issue_title: React.PropTypes.string
 };
 
-var IssueFilter = function (_React$Component2) {
-	_inherits(IssueFilter, _React$Component2);
+var IssueFilter = function (_React$Component3) {
+	_inherits(IssueFilter, _React$Component3);
 
 	function IssueFilter() {
 		_classCallCheck(this, IssueFilter);
@@ -76,8 +112,8 @@ var IssueFilter = function (_React$Component2) {
 	return IssueFilter;
 }(React.Component);
 
-var IssueTable = function (_React$Component3) {
-	_inherits(IssueTable, _React$Component3);
+var IssueTable = function (_React$Component4) {
+	_inherits(IssueTable, _React$Component4);
 
 	function IssueTable() {
 		_classCallCheck(this, IssueTable);
@@ -116,10 +152,16 @@ var IssueTable = function (_React$Component3) {
 				React.createElement(
 					"tbody",
 					null,
-					React.createElement(IssueRow, { issue_id: 1,
-						issue_title: "Error in console when clicking Add" }),
-					React.createElement(IssueRow, { issue_id: 2,
-						issue_title: "Missing bottom border on panel" })
+					React.createElement(
+						IssueRow,
+						{ issue_id: 1 },
+						"issue_title=\"Error in console when clicking Add\""
+					),
+					React.createElement(
+						IssueRow,
+						{ issue_id: 2 },
+						"issue_title=\"Missing bottom border on panel\""
+					)
 				)
 			);
 		}
@@ -128,8 +170,8 @@ var IssueTable = function (_React$Component3) {
 	return IssueTable;
 }(React.Component);
 
-var IssueAdd = function (_React$Component4) {
-	_inherits(IssueAdd, _React$Component4);
+var IssueAdd = function (_React$Component5) {
+	_inherits(IssueAdd, _React$Component5);
 
 	function IssueAdd() {
 		_classCallCheck(this, IssueAdd);
@@ -151,8 +193,8 @@ var IssueAdd = function (_React$Component4) {
 	return IssueAdd;
 }(React.Component);
 
-var IssueList = function (_React$Component5) {
-	_inherits(IssueList, _React$Component5);
+var IssueList = function (_React$Component6) {
+	_inherits(IssueList, _React$Component6);
 
 	function IssueList() {
 		_classCallCheck(this, IssueList);

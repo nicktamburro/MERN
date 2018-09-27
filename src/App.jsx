@@ -1,6 +1,22 @@
 const contentNode = document.getElementById('contents');
 
+class BorderWrap extends React.Component{
+	render(){
+		const borderedStyle = {border: "1px solid silver", padding: 6};
+		return(
+			<div style={borderedStyle}>
+				{this.props.children}
+			</div>
+		);
+	}
+}
 
+//so now, if we want to pass down this boderWrap stye, we could wrap any component
+//like this:
+//<BorderWrap>
+//  <ExampleComponent/>
+//</BorderWrap>
+//.....................THIS WORKS because of this.props.children
 
 class IssueRow extends React.Component{
 	render(){
@@ -10,7 +26,7 @@ class IssueRow extends React.Component{
 			//the style and the props below
 			<tr>
 				<td style={borderedStyle}>{this.props.issue_id}></td>
-				<td style={borderedStyle}>{this.props.issue_title}</td>
+				<td style={borderedStyle}>{this.props.children}</td>
 			</tr>
 		)
 	}
@@ -47,10 +63,16 @@ class IssueTable extends React.Component{
 					</tr>
 				</thead>
 				<tbody>
-					<IssueRow issue_id={1}
-					issue_title="Error in console when clicking Add"/>
-					<IssueRow issue_id={2}
-					issue_title="Missing bottom border on panel"/>
+					{/* we changed these below from:
+					   <IssueRow issue_id={1} issue_title="Error etc" />
+					   I don't totally know why yet, because of children
+					   but don't know the details yet
+					   but they work the same
+					 */}
+					<IssueRow issue_id={1}>
+					issue_title="Error in console when clicking Add"</IssueRow>
+					<IssueRow issue_id={2}>
+					issue_title="Missing bottom border on panel"</IssueRow>
 				</tbody>
 			</table>
 		)
