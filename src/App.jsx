@@ -119,14 +119,21 @@ const issues = [
 class IssueList extends React.Component{
 	constructor(){
 		super();
+		//we initialize state here
 		this.state = { issues: issues };
+		//we make a timer to create a new issue
+		//if we didn't use .bind, the "this" would be set to the timer event
+		//rather than the Issue
 		setTimeout(this.createTestIssue.bind(this), 2000);
 	}
 
 	createIssue(newIssue){
+		//TODO: why did we use slice, instead of just pushing the new issue in?
+		//RIGHTTTTTT we're not supposed to modify the state directly!
 		const newIssues = this.state.issues.slice();
 		newIssue.id = this.state.issues.length + 1;
 		newIssues.push(newIssue);
+		//when we setState, it triggers a rerendering
 		this.setState({ issues: newIssues });
 	}
 
@@ -144,6 +151,8 @@ class IssueList extends React.Component{
 			<h1>Issue Tracker</h1>
 			<IssueFilter/>
 			<hr/>
+			{/* we pass the data contained in state to IssueTable via
+			properties, now it's using the "issues" array as its source data*/}
 			<IssueTable issues={this.state.issues}/>
 			<hr/>
 			<IssueAdd />	
