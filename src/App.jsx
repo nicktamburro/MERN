@@ -82,7 +82,7 @@ class IssueTable extends React.Component{
 						<th>Status</th>
 						<th>Ownder</th>
 						<th>Created</th>
-						<th>Efford</th>
+						<th>Effort</th>
 						<th>Completion Date</th>
 						<th>Title</th>
 					</tr>
@@ -107,11 +107,11 @@ class IssueAdd extends React.Component{
 const issues = [
 	{
 		id: 1, status: 'Open', owner: 'James Hetfield', created: new Date('2018-09-27'),
-		effort: 5, completionDate: undefined, title: 'Error in console when clicking Add'
+		effort: 0, completionDate: undefined, title: 'yeahhhhhhhah!'
 	},
 	{
 		id: 2, status: 'Assigned', owner: 'Dave Mustaine', created: new Date('1987-03-05'),
-		effort: 14, completionDate: new Date('1988-03-05'), title: 'Missing bottom border on panel'
+		effort: 1000, completionDate: new Date('1988-03-05'), title: "I'm not in the band anymore"
 	}
 ];
 
@@ -139,8 +139,8 @@ class IssueList extends React.Component{
 
 	createTestIssue(){
 		this.createIssue({
-			status: 'New', owner: "Kirk Hammett", created: new Date(),
-			title: 'Completion date should be optional'
+			status: 'New', owner: 'Cliff Burton', created: new Date(),
+			title: 'My old band is no longer good.'
 		});
 	}
 

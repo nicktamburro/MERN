@@ -251,10 +251,10 @@ var IssueAdd = function (_React$Component5) {
  //it to server and then db*/}
 var issues = [{
 	id: 1, status: 'Open', owner: 'James Hetfield', created: new Date('2018-09-27'),
-	effort: 5, completionDate: undefined, title: 'Error in console when clicking Add'
+	effort: 5, completionDate: undefined, title: 'yeahhhhhhhah!'
 }, {
 	id: 2, status: 'Assigned', owner: 'Dave Mustaine', created: new Date('1987-03-05'),
-	effort: 14, completionDate: new Date('1988-03-05'), title: 'Missing bottom border on panel'
+	effort: 14, completionDate: new Date('1988-03-05'), title: "I'm not in the band anymore"
 }];
 
 var IssueList = function (_React$Component6) {
@@ -263,9 +263,13 @@ var IssueList = function (_React$Component6) {
 	function IssueList() {
 		_classCallCheck(this, IssueList);
 
+		//we initialize state here
 		var _this6 = _possibleConstructorReturn(this, (IssueList.__proto__ || Object.getPrototypeOf(IssueList)).call(this));
 
 		_this6.state = { issues: issues };
+		//we make a timer to create a new issue
+		//if we didn't use .bind, the "this" would be set to the timer event
+		//rather than the Issue
 		setTimeout(_this6.createTestIssue.bind(_this6), 2000);
 		return _this6;
 	}
@@ -273,17 +277,20 @@ var IssueList = function (_React$Component6) {
 	_createClass(IssueList, [{
 		key: "createIssue",
 		value: function createIssue(newIssue) {
+			//TODO: why did we use slice, instead of just pushing the new issue in?
+			//RIGHTTTTTT we're not supposed to modify the state directly!
 			var newIssues = this.state.issues.slice();
 			newIssue.id = this.state.issues.length + 1;
 			newIssues.push(newIssue);
+			//when we setState, it triggers a rerendering
 			this.setState({ issues: newIssues });
 		}
 	}, {
 		key: "createTestIssue",
 		value: function createTestIssue() {
 			this.createIssue({
-				status: 'New', owner: "Kirk Hammett", created: new Date(),
-				title: 'Completion date should be optional'
+				status: 'New', owner: 'Cliff Burton', created: new Date(),
+				title: 'My old band is no longer good.'
 			});
 		}
 	}, {
